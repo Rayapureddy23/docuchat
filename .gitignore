@@ -1,0 +1,12 @@
+# Secrets — NEVER commit your API key
+.streamlit/secrets.toml
+
+# Data — these are generated locally, not source code
+data/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Jupyter artifacts from your old notebook
+.ipynb_checkpoints/

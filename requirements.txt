@@ -1,0 +1,23 @@
+# DocuMind AI — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Streamlit web framework (Step 3 — web app)
+streamlit>=1.35.0
+
+# Anthropic Claude API (Step 1 — real LLM)
+anthropic>=0.28.0
+
+# PDF reading
+pypdf>=4.0.0
+
+# HTML parsing
+beautifulsoup4>=4.12.0
+
+# Embeddings
+sentence-transformers>=3.0.0
+
+# Vector search
+faiss-cpu>=1.8.0
+
+# Numeric computing
+numpy>=1.26.0

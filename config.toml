@@ -1,0 +1,18 @@
+# .streamlit/config.toml
+# Streamlit configuration file
+# This file controls the look and behaviour of your deployed app.
+ 
+[server]
+# Allow the app to run behind Streamlit Cloud's proxy
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+ 
+[theme]
+base = "light"
+primaryColor = "#7F77DD"        # Purple — matches your DocuMind brand
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F5F5"
+textColor = "#1A1A1A"
+font = "sans serif"
+ 
