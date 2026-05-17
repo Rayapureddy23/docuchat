@@ -60,6 +60,7 @@ def create_conversation(title: str = "New chat") -> int:
     conn.commit()
     new_id = c.lastrowid
     conn.close()
+    assert new_id is not None
     return new_id
 
 
