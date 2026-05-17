@@ -1,90 +1,88 @@
-# DocuMind AI — ChatGPT-like document chatbot
+# DocuMind AI
 
-A RAG-powered chatbot that answers questions about your uploaded PDFs and HTML pages,
-built with Streamlit + Claude API + FAISS.
+**DocuMind AI** is a Retrieval-Augmented Generation (RAG) based intelligent document question-answering system. It allows users to upload PDF and HTML documents, ask natural language questions, and receive context-aware answers generated from the uploaded documents with source citations.
 
-## Project structure
-
-```
-docuchat/
-├── app.py            ← Main Streamlit app (the UI)
-├── llm.py            ← Claude API brain + streaming (Steps 1 & 2)
-├── rag.py            ← Document ingestion + FAISS search (Step 3)
-├── database.py       ← SQLite chat history (Step 4)
-├── requirements.txt  ← All dependencies
-├── .gitignore
-└── .streamlit/
-    ├── config.toml   ← App theme and server settings
-    └── secrets.toml  ← Your API key (local only, never commit)
-```
+The system is designed as an AI-powered document assistant for academic, enterprise, and policy-based documents where users need quick and accurate answers from large document collections.
 
 ---
 
-## Step 1 — Get your API key
+## Project Title
 
-Sign up at https://console.anthropic.com and create an API key.
-
----
-
-## Step 2 — Set up locally
-
-```bash
-# Clone or download this folder, then:
-cd docuchat
-
-# Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Add your API key to the secrets file
-# Edit .streamlit/secrets.toml and replace the placeholder key
-```
+**DocuMind AI: A Retrieval-Augmented Generation (RAG) Based Intelligent Document Question Answering System Using Large Language Models**
 
 ---
 
-## Step 3 — Run the app
+## Research Question
 
-```bash
-streamlit run app.py
-```
-
-Your browser will open at http://localhost:8501
+**How effectively can Retrieval-Augmented Generation (RAG) improve the accuracy and contextual relevance of answers generated from unstructured documents?**
 
 ---
 
-## Step 4 — Use the app
+## Problem Statement
 
-1. In the sidebar, upload your PDF or HTML files
-2. Click **Build index** — this processes and embeds all documents
-3. Type a question in the chat input at the bottom
-4. The app will retrieve relevant chunks and stream Claude's answer in real time
-5. All conversations are saved automatically — restart the app and your history is still there
+Many organisations and students rely on large PDF documents, policy files, course specifications, handbooks, and internal knowledge documents. Searching these documents manually is time-consuming and inefficient. Traditional keyword search often fails to understand the meaning of user questions or retrieve the most relevant information.
+
+DocuMind AI addresses this problem by using semantic search and large language models to retrieve relevant document sections and generate clear answers based only on the uploaded content.
 
 ---
 
-## Step 5 — Deploy to Streamlit Cloud (free)
+## Proposed Solution
 
-1. Push this folder to a **GitHub repository** (the `.gitignore` will keep your key safe)
-2. Go to https://share.streamlit.io
-3. Click **New app** → select your repo → set main file to `app.py`
-4. Click **Advanced settings** → **Secrets** → paste this:
-   ```toml
-   ANTHROPIC_API_KEY = "sk-ant-your-actual-key"
-   ```
-5. Click **Deploy** — your app is live in ~2 minutes
+DocuMind AI uses a RAG pipeline to combine document retrieval with AI-generated responses.
+
+The system works as follows:
+
+1. Users upload PDF or HTML documents.
+2. The system extracts text from the uploaded files.
+3. The extracted text is split into smaller chunks.
+4. Each chunk is converted into embeddings using a Sentence Transformer model.
+5. The embeddings are stored in a FAISS vector index.
+6. When a user asks a question, the system retrieves the most relevant chunks.
+7. The retrieved context is sent to a Large Language Model through the Groq API.
+8. The AI generates an answer using only the retrieved document context.
+9. The answer is displayed with source document names and page numbers.
 
 ---
 
-## What each file replaces from your notebook
+## Key Features
 
-| Old notebook code                        | New file        |
-|------------------------------------------|-----------------|
-| `bart-large-cnn` + messy prompt          | `llm.py`        |
-| `all_documents`, `chunk_data`, FAISS     | `rag.py`        |
-| `chat_history = []` (in-memory)          | `database.py`   |
-| `ipywidgets` textarea + button           | `app.py`        |
-| `from google.colab import files`         | `st.file_uploader` in `app.py` |
-| No persistence (lost on restart)         | SQLite + `faiss.write_index()` |
+- Upload and process PDF and HTML documents
+- Ask questions in natural language
+- Semantic document search using embeddings
+- FAISS-based vector retrieval
+- LLM-powered answer generation using Groq API
+- Real-time streaming responses
+- Source citation with document name and page number
+- Persistent chat history using SQLite
+- Multiple conversation support
+- Streamlit-based user interface
+- Deployable to Streamlit Cloud
+
+---
+
+## System Architecture
+
+```text
+User
+ ↓
+Streamlit Frontend
+ ↓
+Document Upload
+ ↓
+Text Extraction
+ ↓
+Text Chunking
+ ↓
+Sentence Transformer Embeddings
+ ↓
+FAISS Vector Database
+ ↓
+User Question
+ ↓
+Semantic Retrieval
+ ↓
+Groq LLM API
+ ↓
+Generated Answer
+ ↓
+Answer + Source Citations
